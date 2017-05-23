@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Day1Homework.Controller.Messages.Product;
+using Day1Homework.Controller.Models.Product;
+using Day1Homework.Exceptions;
 
 namespace Day1Homework.Controller
 {
-    public class ProductController
+    internal class ProductController
     {
+        private const int MinimumCountWithinGroup = 2;
+        private readonly string[] _validColumns = { "Cost", "Revenue", "SellPrice" };
+        private static readonly Dictionary<string, Func<ProductModel, int>> ProductModelGettersCache = new Dictionary<string, Func<ProductModel, int>>();
+
         private static readonly ProductModel[] ProductData =
         {
             new ProductModel {Id = 1, Cost = 1, Revenue = 11, SellPrice = 21},
@@ -23,53 +28,36 @@ namespace Day1Homework.Controller
             new ProductModel {Id = 11, Cost = 11, Revenue = 21, SellPrice = 31}
         };
 
-        private static readonly Dictionary<string, Func<ProductModel, int>> ProductModelGettersCache = new Dictionary<string, Func<ProductModel, int>>();
-
-        private readonly string[] _validColumns = {"Cost", "Revenue", "SellPrice"};
-
-        public GetGroupSumResponse GetGroupSumByColumnAndCount(GetGroupSumRequest request)
+        internal int[] GetGroupSumByColumnAndCount(int countWithinGroup, string column)
         {
-            if (request.Count == 0 || request.Count > ProductData.Length)
+            if (countWithinGroup < MinimumCountWithinGroup || countWithinGroup > ProductData.Length)
             {
-                return CreateInvalidResponse($"Please input number between 1 and {ProductData.Length} for Count.");
+                throw new InvalidCountException($"Please input number between 2 and {ProductData.Length} for Count.");
             }
 
-            if (!_validColumns.Contains(request.Column))
+            if (!_validColumns.Contains(column))
             {
-                return CreateInvalidResponse($"Please input the following columns \"{string.Join(", ", _validColumns)}\".");
+                throw new InvalidColumnException($"Please input the following columns \"{string.Join(", ", _validColumns)}\".");
             }
 
             var groupNumber = 0;
             foreach (var product in ProductData)
             {
-                if (product.Id % request.Count == 1)
+                if (product.Id % countWithinGroup == 1)
                 {
                     groupNumber++;
                 }
                 product.Group = groupNumber;
             }
 
-            var columnGetter = GetColumnGetter(request.Column);
+            var columnGetter = GetColumnGetter(column);
 
             var result = (from product in ProductData
                        group product by product.Group into grp
                        select grp.Sum(columnGetter)).ToArray();
 
-            return new GetGroupSumResponse
-            {
-                Result = result.ToArray()
-            };
+            return result;
         }
-
-        private GetGroupSumResponse CreateInvalidResponse(string message)
-        {
-            return new GetGroupSumResponse
-            {
-                Valid = false,
-                Message = message
-            };
-        }
-
         private static Func<ProductModel, int> GetColumnGetter(string column)
         {
             Func<ProductModel, int> getter;

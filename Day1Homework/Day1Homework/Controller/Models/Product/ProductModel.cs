@@ -1,6 +1,6 @@
-﻿namespace Day1Homework.Controller.Messages.Product
+﻿namespace Day1Homework.Controller.Models.Product
 {
-    public class ProductModel
+    internal class ProductModel
     {
         public int Id { get; internal set; }
         public int Cost { get; internal set; }
