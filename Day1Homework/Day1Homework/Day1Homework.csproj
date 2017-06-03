@@ -45,11 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\InvalidColumnException.cs" />
+    <Compile Include="Exceptions\InvalidCountException.cs" />
+    <Compile Include="Models\Product\ProductModel.cs" />
     <Compile Include="Repository\ProductionRepository.cs" />
-    <Compile Include="Controller\Messages\Product\GetGroupSumRequest.cs" />
-    <Compile Include="Controller\Messages\Product\GetGroupSumResponse.cs" />
+    <Compile Include="Controller\Messages\Product\GetPagedSumRequest.cs" />
+    <Compile Include="Controller\Messages\Product\GetPagedSumResponse.cs" />
     <Compile Include="Controller\ProductController.cs" />
-    <Compile Include="Controller\Messages\Product\ProductModel.cs" />
     <Compile Include="Extensions\EnumerableExtension.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

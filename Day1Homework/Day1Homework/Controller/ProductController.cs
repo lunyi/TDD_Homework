@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Day1Homework.Controller.Messages.Product;
+using Day1Homework.Controller.Models.Product;
 using Day1Homework.Extensions;
 using Day1Homework.Repository;
 

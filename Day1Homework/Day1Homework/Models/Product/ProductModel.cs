@@ -1,6 +1,6 @@
 ﻿namespace Day1Homework.Controller.Models.Product
 {
-    internal class ProductModel
+    public class ProductModel
     {
         public int Id { get; set; }
         public int Cost { get; set; }
