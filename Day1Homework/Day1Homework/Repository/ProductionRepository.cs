@@ -1,4 +1,4 @@
-﻿using Day1Homework.Controller.Models.Product;
+﻿using Day1Homework.Models.Product;
 
 namespace Day1Homework.Repository
 {
