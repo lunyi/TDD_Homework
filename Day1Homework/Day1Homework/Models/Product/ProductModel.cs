@@ -1,4 +1,4 @@
-﻿namespace Day1Homework.Controller.Models.Product
+﻿namespace Day1Homework.Models.Product
 {
     public class ProductModel
     {
