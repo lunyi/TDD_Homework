@@ -1,5 +1,6 @@
 ﻿using Day1Homework.Controller;
 using Day1Homework.Controller.Messages.Product;
+using Day1Homework.Models.Product;
 using Day1Homework.Repository;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
