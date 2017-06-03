@@ -1,6 +1,6 @@
 ﻿namespace Day1Homework.Controller.Messages.Product
 {
-    public class GetGroupSumResponse
+    public class GetPagedSumResponse
     {
         public bool Valid { get; set; }
         public string Message { get; set; }

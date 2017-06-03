@@ -1,8 +1,8 @@
 ﻿namespace Day1Homework.Controller.Messages.Product
 {
-    public class GetGroupSumRequest
+    public class GetPagedSumRequest
     {
-        public int Count { get; set; }
+        public int PagedSize { get; set; }
         public string Column { get; set; }
     }
 }
