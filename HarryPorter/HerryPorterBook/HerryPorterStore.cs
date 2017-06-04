@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using HerryPorterBook.Interfaces;
 
 namespace HerryPorterBook
 {
     public class HerryPorterStore
     {
-        public double CalculatePrice(IHerryPorterBook[] books)
+        public double CalculatePrice(params IHerryPorterBook[] books)
         {
-            var groupedBooks = books.ToLookup(p => p.Name)
+            var groupedBooks = books.ToLookup(p => p.GetType())
                                .Select(p=> p.Sum(g=>g.Number))
                                .ToList();
             return GetGroupBooksPrice(groupedBooks);
@@ -15,22 +16,32 @@ namespace HerryPorterBook
 
         private double CalculatePrice(int differentBookCount, int bookNumberInGroup)
         {
+            const double bookPrice = 100;
+            double discountPercent;
             switch (differentBookCount)
             {
                 case 5:
-                    return bookNumberInGroup * 500 * 0.75;
+                    discountPercent = 0.75;
+                    break;
                 case 4:
-                    return bookNumberInGroup * 400 * 0.8;
+                    discountPercent = 0.8;
+                    break;
                 case 3:
-                    return bookNumberInGroup * 300 * 0.90;
+                    discountPercent = 0.9;
+                    break;
                 case 2:
-                    return bookNumberInGroup * 200 * 0.95;
+                    discountPercent = 0.95;
+                    break;
                 case 1:
-                    return bookNumberInGroup * 100;
+                    discountPercent = 1.0;
+                    break;
                 default:
-                    return 0;
+                    discountPercent = 0;
+                    break;
             }
+            return bookNumberInGroup * bookPrice * differentBookCount * discountPercent;
         }
+
         private double GetGroupBooksPrice(IList<int> booksNumbers)
         {
             double result = 0 ;

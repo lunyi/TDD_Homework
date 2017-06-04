@@ -1,4 +1,6 @@
-﻿namespace HerryPorterBook
+﻿using HerryPorterBook.Interfaces;
+
+namespace HerryPorterBook.Models
 {
     public class FifthBook : IHerryPorterBook
     {
@@ -7,8 +9,6 @@
         {
             _number = number;
         }
-
         int IHerryPorterBook.Number => _number;
-        string IHerryPorterBook.Name => "Fifth";
     }
 }

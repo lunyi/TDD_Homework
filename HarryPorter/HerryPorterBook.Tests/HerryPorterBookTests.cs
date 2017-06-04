@@ -1,4 +1,6 @@
 ﻿using FluentAssertions;
+using HerryPorterBook.Interfaces;
+using HerryPorterBook.Models;
 using NUnit.Framework;
 
 namespace HerryPorterBook.Tests

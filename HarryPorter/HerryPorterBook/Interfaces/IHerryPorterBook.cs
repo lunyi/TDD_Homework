@@ -1,8 +1,7 @@
-﻿namespace HerryPorterBook
+﻿namespace HerryPorterBook.Interfaces
 {
     public interface IHerryPorterBook
     {
-        string Name { get; }
         int Number { get;}
     }
 }
