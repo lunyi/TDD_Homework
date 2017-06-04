@@ -15,26 +15,25 @@ namespace HerryPorterBook
             return GetGroupBooksPrice(groupedBooks);
         }
 
-        private static double GetGroupBooksPrice(IList<int> booksNumbers)
+        private static double GetGroupBooksPrice(IList<int> books)
         {
             double result = 0 ;
-            // ReSharper disable once LoopVariableIsNeverChangedInsideLoop
-            while (booksNumbers.Any(b => b > 0) )
+            while (books.Any(qty => qty > 0) )
             {
-                var bookNumberInGroup = booksNumbers.Where(b => b > 0).Min();
-                var differentBookCount = booksNumbers.Count(p => p >= bookNumberInGroup);
-                for (var i = 0; i < booksNumbers.Count; i++)
+                var bookQty = books.Where(qty => qty > 0).Min();
+                var countOfBookType = books.Count(qty => qty >= bookQty);
+                for (var i = 0; i < books.Count; i++)
                 {
-                    booksNumbers[i] = booksNumbers[i] - bookNumberInGroup;     
+                    books[i] = books[i] - bookQty;     
                 }
-                result += bookNumberInGroup * BookPrice * differentBookCount * GetDiscountPercent(differentBookCount);
+                result += bookQty * BookPrice * countOfBookType * GetDiscount(countOfBookType);
             }
             return result;
         }
 
-        private static double GetDiscountPercent(int differentBookCount)
+        private static double GetDiscount(int countOfBookType)
         {
-            switch (differentBookCount)
+            switch (countOfBookType)
             {
                 case 5:
                     return 0.75;
