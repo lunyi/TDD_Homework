@@ -27,8 +27,7 @@ namespace HerryPorterBook.Tests
                 new FourthBook(fourthNum),
                 new FifthBook(fifthNum)
             };
-            var store = new HerryPorterStore();
-            var actual = store.CalculatePrice(books);
+            var actual = books.GetPrice();
             actual.Should().Be(expected);
         }
     }

@@ -4,10 +4,10 @@ using HerryPorterBook.Interfaces;
 
 namespace HerryPorterBook
 {
-    public class HerryPorterStore
+    public static class HerryPorterStore
     {
         private const double BookPrice = 100;
-        public double CalculatePrice(params IHerryPorterBook[] books)
+        public static double GetPrice(this IEnumerable<IHerryPorterBook> books)
         {
             var groupedBooks = books.ToLookup(p => p.GetType())
                                .Select(p => p.Sum(g => g.Number))
@@ -15,7 +15,7 @@ namespace HerryPorterBook
             return GetGroupBooksPrice(groupedBooks);
         }
 
-        private double GetGroupBooksPrice(IList<int> booksNumbers)
+        private static double GetGroupBooksPrice(IList<int> booksNumbers)
         {
             double result = 0 ;
             // ReSharper disable once LoopVariableIsNeverChangedInsideLoop
@@ -32,7 +32,7 @@ namespace HerryPorterBook
             return result;
         }
 
-        private double GetDiscountPercent(int differentBookCount)
+        private static double GetDiscountPercent(int differentBookCount)
         {
             switch (differentBookCount)
             {
