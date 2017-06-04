@@ -6,40 +6,13 @@ namespace HerryPorterBook
 {
     public class HerryPorterStore
     {
+        private const double BookPrice = 100;
         public double CalculatePrice(params IHerryPorterBook[] books)
         {
             var groupedBooks = books.ToLookup(p => p.GetType())
                                .Select(p=> p.Sum(g=>g.Number))
                                .ToList();
             return GetGroupBooksPrice(groupedBooks);
-        }
-
-        private double CalculatePrice(int differentBookCount, int bookNumberInGroup)
-        {
-            const double bookPrice = 100;
-            double discountPercent;
-            switch (differentBookCount)
-            {
-                case 5:
-                    discountPercent = 0.75;
-                    break;
-                case 4:
-                    discountPercent = 0.8;
-                    break;
-                case 3:
-                    discountPercent = 0.9;
-                    break;
-                case 2:
-                    discountPercent = 0.95;
-                    break;
-                case 1:
-                    discountPercent = 1.0;
-                    break;
-                default:
-                    discountPercent = 0;
-                    break;
-            }
-            return bookNumberInGroup * bookPrice * differentBookCount * discountPercent;
         }
 
         private double GetGroupBooksPrice(IList<int> booksNumbers)
@@ -55,10 +28,28 @@ namespace HerryPorterBook
                     var tmp = booksNumbers[i] - bookNumberInGroup;
                     booksNumbers[i] = tmp;       
                 }
-
-                result += CalculatePrice(differentBookCount, bookNumberInGroup);
+                result += bookNumberInGroup * BookPrice * differentBookCount * GetDiscountPercent(differentBookCount);
             }
             return result;
+        }
+
+        private double GetDiscountPercent(int differentBookCount)
+        {
+            switch (differentBookCount)
+            {
+                case 5:
+                    return 0.75;
+                case 4:
+                    return 0.8;
+                case 3:
+                    return 0.9;
+                case 2:
+                    return 0.95;
+                case 1:
+                    return 1.0;
+                default:
+                    return 0;
+            }
         }
     }
 }
