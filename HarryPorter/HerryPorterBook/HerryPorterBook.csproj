@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Models\FifthBook.cs" />
     <Compile Include="Models\FourthBook.cs" />
-    <Compile Include="HerryPorterStore.cs" />
+    <Compile Include="HerryPorterBookExtension.cs" />
     <Compile Include="Models\ThirdBook.cs" />
     <Compile Include="Models\SecondBook.cs" />
     <Compile Include="Models\FirstBook.cs" />

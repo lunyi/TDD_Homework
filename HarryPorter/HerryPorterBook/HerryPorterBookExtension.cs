@@ -4,7 +4,7 @@ using HerryPorterBook.Interfaces;
 
 namespace HerryPorterBook
 {
-    public static class HerryPorterStore
+    public static class HerryPorterBookExtension
     {
         private const double BookPrice = 100;
         public static double GetPrice(this IEnumerable<IHerryPorterBook> books)
