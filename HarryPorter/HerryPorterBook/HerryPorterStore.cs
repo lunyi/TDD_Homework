@@ -25,8 +25,7 @@ namespace HerryPorterBook
                 var differentBookCount = booksNumbers.Count(p => p >= bookNumberInGroup);
                 for (var i = 0; i < booksNumbers.Count; i++)
                 {
-                    var tmp = booksNumbers[i] - bookNumberInGroup;
-                    booksNumbers[i] = tmp;       
+                    booksNumbers[i] = booksNumbers[i] - bookNumberInGroup;     
                 }
                 result += bookNumberInGroup * BookPrice * differentBookCount * GetDiscountPercent(differentBookCount);
             }
