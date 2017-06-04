@@ -10,7 +10,7 @@ namespace HerryPorterBook
         public double CalculatePrice(params IHerryPorterBook[] books)
         {
             var groupedBooks = books.ToLookup(p => p.GetType())
-                               .Select(p=> p.Sum(g=>g.Number))
+                               .Select(p => p.Sum(g => g.Number))
                                .ToList();
             return GetGroupBooksPrice(groupedBooks);
         }
