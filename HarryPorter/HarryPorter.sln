@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerryPorterBook.Tests", "HerryPorterBook.Tests\HerryPorterBook.Tests.csproj", "{6B4A5CDE-D1A8-42F0-A9EA-FD05FD2403A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerryPorterBook", "HerryPorterBook\HerryPorterBook.csproj", "{72C2D46C-F2AB-4400-8D27-6341637AF096}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B4A5CDE-D1A8-42F0-A9EA-FD05FD2403A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B4A5CDE-D1A8-42F0-A9EA-FD05FD2403A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B4A5CDE-D1A8-42F0-A9EA-FD05FD2403A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B4A5CDE-D1A8-42F0-A9EA-FD05FD2403A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72C2D46C-F2AB-4400-8D27-6341637AF096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72C2D46C-F2AB-4400-8D27-6341637AF096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72C2D46C-F2AB-4400-8D27-6341637AF096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72C2D46C-F2AB-4400-8D27-6341637AF096}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
