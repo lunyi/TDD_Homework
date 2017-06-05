@@ -17,7 +17,7 @@ namespace HerryPorterBook
 
         private static double GetGroupBooksPrice(IList<int> books)
         {
-            double result = 0 ;
+            double totalPrice = 0 ;
             while (books.Any(qty => qty > 0) )
             {
                 var bookQty = books.Where(qty => qty > 0).Min();
@@ -26,9 +26,9 @@ namespace HerryPorterBook
                 {
                     books[i] = books[i] - bookQty;     
                 }
-                result += bookQty * BookPrice * countOfBookType * GetDiscount(countOfBookType);
+                totalPrice += bookQty * BookPrice * countOfBookType * GetDiscount(countOfBookType);
             }
-            return result;
+            return totalPrice;
         }
 
         private static double GetDiscount(int countOfBookType)

@@ -21,15 +21,15 @@ namespace HerryPorterBook.Tests
         [TestCase(-1, -1, -100, 0, 0, 0)]
         [TestCase(100, 50, 10, 0, 0, 15300)]
         [TestCase(10, 10, 10, 10, 10, 3750)]
-        public void Should_Get_Correct_Price_For_Buy_Herry_Porter_Books(int firstNum, int secondNum, int thirdNum, int fourthNum, int fifthNum, int expected)
+        public void Should_Get_Correct_Price_For_Buy_Herry_Porter_Books(int firstQty, int secondQty, int thirdQty, int fourthQty, int fifthQty, int expected)
         {
             var books = new IHerryPorterBook[]
             {
-                new FirstBook(firstNum),
-                new SecondBook(secondNum),
-                new ThirdBook(thirdNum),
-                new FourthBook(fourthNum),
-                new FifthBook(fifthNum)
+                new FirstBook(firstQty),
+                new SecondBook(secondQty),
+                new ThirdBook(thirdQty),
+                new FourthBook(fourthQty),
+                new FifthBook(fifthQty)
             };
             var actual = books.GetPrice();
             actual.Should().Be(expected);
