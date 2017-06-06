@@ -21,6 +21,7 @@ namespace HerryPorterBook.Tests
         [TestCase(-1, -1, -100, 0, 0, 0)]
         [TestCase(100, 50, 10, 0, 0, 15300)]
         [TestCase(10, 10, 10, 10, 10, 3750)]
+        [TestCase(2, 4, 6, 8, 10, 2510)]
         public void Should_Get_Correct_Price_For_Buy_Herry_Porter_Books(int firstQty, int secondQty, int thirdQty, int fourthQty, int fifthQty, int expected)
         {
             var books = new IHerryPorterBook[]
