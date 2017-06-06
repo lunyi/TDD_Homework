@@ -33,21 +33,21 @@ namespace HerryPorterBook
 
         private static double GetDiscount(int countOfBookType)
         {
-            switch (countOfBookType)
+            double discount;
+            GetAllDiscounts().TryGetValue(countOfBookType, out discount);
+            return discount;
+        }
+
+        private static Dictionary<int, double> GetAllDiscounts()
+        {
+            return new Dictionary<int, double>
             {
-                case 5:
-                    return 0.75;
-                case 4:
-                    return 0.8;
-                case 3:
-                    return 0.9;
-                case 2:
-                    return 0.95;
-                case 1:
-                    return 1.0;
-                default:
-                    return 0;
-            }
+                { 1, 1.00 },
+                { 2, 0.95 },
+                { 3, 0.90 },
+                { 4, 0.80 },
+                { 5, 0.75 },
+            };
         }
     }
 }
