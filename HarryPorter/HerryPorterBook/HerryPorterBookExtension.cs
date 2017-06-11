@@ -6,48 +6,21 @@ namespace HerryPorterBook
 {
     public static class HerryPorterBookExtension
     {
-        private const double BookPrice = 100;
-        public static double GetPrice(this IEnumerable<IHerryPorterBook> books)
+        public static double GetPrice(this IEnumerable<IHerryPorterBook> books, double bookPrice, Dictionary<int, double> discounts)
         {
-            var groupedBooks = books.ToLookup(p => p.GetType())
-                               .Select(p => p.Sum(g => g.Number))
-                               .ToList();
-            return GetGroupBooksPrice(groupedBooks);
-        }
-
-        private static double GetGroupBooksPrice(IList<int> books)
-        {
-            double totalPrice = 0 ;
-            while (books.Any(qty => qty > 0) )
+            var bookSets = books.ToLookup(p => p.GetType()).Select(p => p.Sum(g => g.Number)).ToList();
+            double totalPrice = 0;
+            while (bookSets.Any(qty => qty > 0))
             {
-                var bookQty = books.Where(qty => qty > 0).Min();
-                var countOfBookType = books.Count(qty => qty >= bookQty);
-                for (var i = 0; i < books.Count; i++)
+                var minBookQty = bookSets.Where(qty => qty > 0).Min();
+                var bookSetCount = bookSets.Count(qty => qty >= minBookQty);
+                for (var i = 0; i < bookSets.Count; i++)
                 {
-                    books[i] = books[i] - bookQty;     
+                    bookSets[i] = bookSets[i] - minBookQty;
                 }
-                totalPrice += bookQty * BookPrice * countOfBookType * GetDiscount(countOfBookType);
+                totalPrice += minBookQty * bookPrice * bookSetCount * discounts[bookSetCount];
             }
             return totalPrice;
-        }
-
-        private static double GetDiscount(int countOfBookType)
-        {
-            double discount;
-            GetAllDiscounts().TryGetValue(countOfBookType, out discount);
-            return discount;
-        }
-
-        private static Dictionary<int, double> GetAllDiscounts()
-        {
-            return new Dictionary<int, double>
-            {
-                { 1, 1.00 },
-                { 2, 0.95 },
-                { 3, 0.90 },
-                { 4, 0.80 },
-                { 5, 0.75 },
-            };
         }
     }
 }

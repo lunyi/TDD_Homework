@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Collections.Generic;
+using FluentAssertions;
 using HerryPorterBook.Interfaces;
 using HerryPorterBook.Models;
 using NUnit.Framework;
@@ -8,6 +9,17 @@ namespace HerryPorterBook.Tests
     [TestFixture]
     public class HerryPorterBookTests
     {
+        private const double BookPrice = 100;
+
+        private static readonly Dictionary<int, double> Discounts = new Dictionary<int, double>
+            {
+                { 1, 1.00 },
+                { 2, 0.95 },
+                { 3, 0.90 },
+                { 4, 0.80 },
+                { 5, 0.75 }
+            };
+
         [TestCase(1, 0, 0, 0, 0, 100)]
         [TestCase(1, 1, 0, 0, 0, 190)]
         [TestCase(1, 1, 1, 0, 0, 270)]
@@ -32,7 +44,7 @@ namespace HerryPorterBook.Tests
                 new FourthBook(fourthQty),
                 new FifthBook(fifthQty)
             };
-            var actual = books.GetPrice();
+            var actual = books.GetPrice(BookPrice, Discounts);
             actual.Should().Be(expected);
         }
     }
